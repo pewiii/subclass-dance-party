@@ -32,20 +32,29 @@ $(document).ready(function() {
 
     $('body').append(dancer.$node);
 
+    dancer.$node.on('mouseover', dancer.catchMe);
+
     if (window.dancers.length > 2) {
-      var randomNum1 = Math.floor(Math.random() * window.dancers.length);
-      var randomNum2 = Math.floor(Math.random() * window.dancers.length);
-      var pos1 = window.dancers[randomNum1].$node.position();
-      var pos2 = window.dancers[randomNum2].$node.position();
-      window.dancers[randomNum1].$node.animate(pos2, 3000, 'swing');
-      window.dancers[randomNum2].$node.animate(pos1, 3000, 'swing');
+      var randomNum1 = Math.floor(Math.random() * (window.dancers.length - 1));
+      var randomNum2 = Math.floor(Math.random() * (window.dancers.length - 1));
+
+      var top1 = window.dancers[randomNum1].top;
+      var left1 = window.dancers[randomNum1].left;
+      var top2 = window.dancers[randomNum2].top;
+      var left2 = window.dancers[randomNum2].left;
+      window.dancers[randomNum2].$node.animate({top: top1 + 'px', left: left1 + 'px'}, 3000, 'swing');
+      window.dancers[randomNum1].$node.animate({top: top2 + 'px', left: left2 + 'px'}, 3000, 'swing');
+
+      window.dancers[randomNum1].top = top2;
+      window.dancers[randomNum1].left = left2;
+      window.dancers[randomNum2].top = top1;
+      window.dancers[randomNum2].left = left1;
+
     }
   });
 
   $('.lineUp').on('click', function(event) {
-    // loop through the all dancers in window.dancher
     for (var i = 0; i < window.dancers.length; i++) {
-      // call the lineUp method in each dancer element
       window.dancers[i].lineUp();
     }
   });

@@ -2,6 +2,8 @@
 var Dancer = function(top, left, timeBetweenSteps) {
   this.$node = $('<span class ="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;
+  this.top = top;
+  this.left = left;
 };
 
 Dancer.prototype.step = function() {
@@ -22,4 +24,14 @@ Dancer.prototype.lineUp = function() {
   this.$node.animate({
     'top': '200px'
   }, 2000, 'swing');
+};
+
+Dancer.prototype.catchMe = function(event) {
+  var top = Math.floor(Math.random() * $('body').height());
+  var left = Math.floor(Math.random() * $('body').width());
+  var position = {
+    top: top,
+    left: left
+  };
+  $(this).css(position);
 };
