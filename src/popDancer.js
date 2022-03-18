@@ -34,11 +34,4 @@ PopDancer.prototype.step = function() {
 
   changeColorBack = changeColorBack.bind(this);
   setTimeout(changeColorBack, this.colorChangingTime / 2);
-  // setInterval(this.$node.css(cssColorGreen), 1000);
-  // setInterval(this.$node.css(cssColorRed), 1000);
-
-  // this.$node.animate(cssColorGreen, 1000, 'swing', () => {
-  //   var reAnimate = this.step.bind(this);
-  //   this.$node.animate(cssColorRed, 1000, 'swing', reAnimate);
-  // });
 };
