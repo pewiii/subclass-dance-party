@@ -31,6 +31,15 @@ $(document).ready(function() {
     window.dancers.push(dancer);
 
     $('body').append(dancer.$node);
+
+    if (window.dancers.length > 2) {
+      var randomNum1 = Math.floor(Math.random() * window.dancers.length);
+      var randomNum2 = Math.floor(Math.random() * window.dancers.length);
+      var pos1 = window.dancers[randomNum1].$node.position();
+      var pos2 = window.dancers[randomNum2].$node.position();
+      window.dancers[randomNum1].$node.animate(pos2, 3000, 'swing');
+      window.dancers[randomNum2].$node.animate(pos1, 3000, 'swing');
+    }
   });
 
   $('.lineUp').on('click', function(event) {
@@ -40,5 +49,6 @@ $(document).ready(function() {
       window.dancers[i].lineUp();
     }
   });
+
 });
 
