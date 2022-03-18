@@ -1,7 +1,6 @@
 // changes between colors
 var PopDancer = function(top, left, colorChangingTime) {
   Dancer.call(this, top, left, colorChangingTime);
-  this.colorChangingTime = colorChangingTime;
   Dancer.prototype.step.call(this);
   Dancer.prototype.setPosition.call(this, top, left);
 };
@@ -13,7 +12,7 @@ var oldStep = PopDancer.prototype.step;
 
 PopDancer.prototype.step = function() {
   oldStep.call(this);
-  // do stuff to change color
+
   var randomRed1 = Math.floor(Math.random() * 255);
   var randomGreen1 = Math.floor(Math.random() * 255);
   var randomBlue1 = Math.floor(Math.random() * 255);
@@ -32,6 +31,7 @@ PopDancer.prototype.step = function() {
   var changeColorBack = function() {
     this.$node.css(cssColor2);
   };
+
   changeColorBack = changeColorBack.bind(this);
   setTimeout(changeColorBack, this.colorChangingTime / 2);
   // setInterval(this.$node.css(cssColorGreen), 1000);
