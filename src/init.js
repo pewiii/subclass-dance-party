@@ -23,7 +23,7 @@ $(document).ready(function() {
     // make a dancer with a random position
 
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
+      $("body").height() * (Math.random() * 0.3 + 0.4),
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
@@ -32,8 +32,12 @@ $(document).ready(function() {
 
     $('body').append(dancer.$node);
 
-    dancer.$node.on('mouseover', dancer.catchMe);
+    // mouseover event listenter
+    dancer.$node.on('mouseover', function() {
+      dancer.catchMe();
+    });
 
+    // dancer interaction: two random dance will switch their places.
     if (window.dancers.length > 2) {
       var randomNum1 = Math.floor(Math.random() * (window.dancers.length - 1));
       var randomNum2 = Math.floor(Math.random() * (window.dancers.length - 1));
@@ -54,8 +58,10 @@ $(document).ready(function() {
   });
 
   $('.lineUp').on('click', function(event) {
+    var divider = $("body").width() / window.dancers.length;
     for (var i = 0; i < window.dancers.length; i++) {
-      window.dancers[i].lineUp();
+      var left = i * divider;
+      window.dancers[i].lineUp(left);
     }
   });
 
