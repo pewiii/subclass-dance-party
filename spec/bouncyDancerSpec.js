@@ -20,16 +20,10 @@ describe('bouncyDancer', function() {
 
   describe('dance', function() {
     it('should call step at least once per second', function() {
-
-      sinon.spy(bouncyDancer, 'reAnimate');
-      expect(bouncyDancer.reAnimate.callCount).to.not.equal(0);
-      // clock.tick(timeBetweenSteps); // ? it seems an extra tick is necessary...
-      // clock.tick(timeBetweenSteps);
-
-      // expect(bouncyDancer.step.callCount).to.be.equal(1);
-
-      // clock.tick(timeBetweenSteps);
-      // expect(bouncyDancer.step.callCount).to.be.equal(2);
+      sinon.spy(bouncyDancer.$node, 'animate');
+      expect(bouncyDancer.$node.animate.callCount).to.equal(0);
+      clock.tick(timeBetweenSteps);
+      expect(bouncyDancer.$node.animate.callCount).to.not.equal(0);
     });
   });
 });
